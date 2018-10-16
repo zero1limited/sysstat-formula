@@ -23,17 +23,19 @@ def iowait(period=10):
       reader = csv.reader(sarData, delimiter=';')
       rowCount = 0
       ioWaitColumn = 0
-      totalIOWait = 0
+      totalIOWait = 100
+      rows = []
       for row in reader:
-        print('\t'.join(row))
+        
+        rows.append(row)
         rowCount += 1
         if rowCount == 0:
           continue
         elif rowCount == 1:
-          ioWaitColumn = row.index('%iowait')
+          #ioWaitColumn = row.index('%iowait')
           continue
         else:
-          totalIOWait += float(row[ioWaitColumn])
+          #totalIOWait += float(row[ioWaitColumn])
       
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
         'average': (totalIOWait / (rowCount - 2))
