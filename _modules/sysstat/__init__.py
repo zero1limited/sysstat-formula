@@ -26,12 +26,11 @@ def iowait(period=10):
       totalIOWait = 100
       rows = []
       for row in reader:
-        
-        rows.append(row)
         rowCount += 1
         if rowCount == 0:
           continue
         elif rowCount == 1:
+          rows.append(row)
           #ioWaitColumn = row.index('%iowait')
           continue
         else:
