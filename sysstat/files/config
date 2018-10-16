@@ -7,7 +7,7 @@
 HISTORY={{history}}
 
 # Compress (using xz, gzip or bzip2) sa and sar files older than (in days):
-COMPRESSAFTER={{compress_after}}
+COMPRESSAFTER={{compressafter}}
 
 # Parameters for the system activity data collector (see sadc(8) manual page)
 # which are used for the generation of log files.
