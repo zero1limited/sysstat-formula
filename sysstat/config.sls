@@ -43,5 +43,5 @@ sysstat-config:
     - template: jinja
     - defaults:
         history: {{ config_settings.history }}
-        compressafter: {{ config_setting.compressafter }}
+        compressafter: {{ config_settings.compressafter }}
 
