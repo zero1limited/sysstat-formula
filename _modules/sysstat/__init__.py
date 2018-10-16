@@ -25,7 +25,7 @@ def iowait(period=10):
       ioWaitColumn = 0
       totalIOWait = 0
       for row in reader:
-        rowCount++
+        rowCount += 1
         if rowCount == 0:
           continue
         elif rowCount == 1:
