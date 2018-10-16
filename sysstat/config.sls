@@ -5,9 +5,9 @@
 {% from "sysstat/map.jinja" import sysstat_settings with context %}
 {% set config_settings = sysstat_settings.config %}
 
-sysstat-config:
+sysstat-default:
   file.managed:
-    - name: {{ config_settings.path }}
+    - name: {{ config_settings.default_path }}
     - source: salt://sysstat/files/sysstat.default
     - mode: 644
     - user: root
@@ -21,3 +21,27 @@ sysstat-config:
     - listen_in:
       - service: sysstat-service
     {% endif %}
+
+sysstat-cron:
+  file.managed:
+    - name: {{ config_settings.cron_path }}
+    - source: salt://sysstat/files/cron
+    - mode: 644
+    - user: root
+    - group: root
+    - template: jinja
+    - defaults:
+        schedule: {{ config_settings.schedule }}
+    
+sysstat-config:
+  file.managed:
+    - name: {{ config_settings.config_path }}
+    - source: salt://sysstat/files/config
+    - mode: 644
+    - user: root
+    - group: root
+    - template: jinja
+    - defaults:
+        history: {{ config_settings.history }}
+        compressafter: {{ config_setting.compressafter }}
+
