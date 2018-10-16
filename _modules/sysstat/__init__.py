@@ -37,9 +37,10 @@ def iowait(period=10):
         else:
           #totalIOWait += float(row[ioWaitColumn])
       
-      returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
-        'average': (totalIOWait / (rowCount - 2))
-      }
+        returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
+          'average': (totalIOWait / (rowCount - 2)),
+          'rows': rows
+        }
     else:
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
         'average': 0,
