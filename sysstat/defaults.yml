@@ -14,3 +14,4 @@ sysstat:
     sa2_options: ""
     history: 60
     compressafter: 10
+    schedule: '* * * * *'
