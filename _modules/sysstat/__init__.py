@@ -10,6 +10,6 @@ def iowait(period=10):
   
   for daysAgo in range(0, period):
     daysAgoDate = datetime.now() - timedelta(days=daysAgo)
-    returnData['results'][datetime.strptime(daysAgoDate, '%Y-%m-%d')] = 'blah'
+    returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = 'blah'
   
   return returnData
