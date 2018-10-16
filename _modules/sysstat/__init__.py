@@ -28,10 +28,13 @@ def iowait(period=10):
       for row in reader:
         rowCount += 1
         if rowCount == 0:
+          rows.append(row)
           continue
         elif rowCount == 1:
           rows.append(row)
           #ioWaitColumn = row.index('%iowait')
+        elif rowCount == 2:
+          rows.append(row)
           continue
         else:
           #totalIOWait += float(row[ioWaitColumn])
