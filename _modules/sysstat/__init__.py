@@ -18,7 +18,7 @@ def iowait(period=10):
     sarFilePath = '/var/log/sysstat/sa' + daysAgoDate.strftime('%Y-%m-%d')
     if os.path.isfile(sarFilePath):
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = __salt__['cmd.run'](
-        cmd='sadf -d '+sarFilePath'+ -- -u
+        cmd='sadf -d '+sarFilePath+' -- -u'
       )
     else:
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
