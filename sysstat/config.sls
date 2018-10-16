@@ -31,7 +31,7 @@ sysstat-cron:
     - group: root
     - template: jinja
     - defaults:
-        schedule: {{ config_settings.schedule }}
+        schedule: "{{ config_settings.schedule }}"
     
 sysstat-config:
   file.managed:
