@@ -6,7 +6,9 @@ sysstat:
     name: sysstat
     enabled: True
   config:
-    path: '/etc/default/sysstat'
+    default_path: '/etc/default/sysstat'
+    config_path: '/etc/sysstat/sysstat'
+    cron_path: '/etc/cron.d/sysstat'
     enabled: "true"
     sa1_options: "-S DISK"
     sa2_options: ""
