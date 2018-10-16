@@ -11,6 +11,9 @@ def iowait(period=10):
     'average': 0
   }
   
+  runningTotal = 0
+  totalResults = 0
+  
   for daysAgo in range(0, period):
     daysAgoDate = datetime.now() - timedelta(days=daysAgo)
     
@@ -35,13 +38,18 @@ def iowait(period=10):
           totalIOWait += float(row[ioWaitColumn])
       
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
+        'fail': False,
         'average': (totalIOWait / (rowCount - 2)),
         'data_set_size': (rowCount - 2)
       }
+      runningTotal += (totalIOWait / (rowCount - 2))
+      totalResults += 1
     else:
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
+        'fail': True,
         'average': 0,
         'message': 'Unable to find sar file'
       }
   
+  returnData['average'] = (runningTotal / totalResults)
   return returnData
