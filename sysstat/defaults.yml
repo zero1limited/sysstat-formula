@@ -13,5 +13,5 @@ sysstat:
     sa1_options: "-S DISK"
     sa2_options: ""
     history: 60
-    compressafter: 10
+    compressafter: 2
     schedule: '* * * * *'
