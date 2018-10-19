@@ -35,9 +35,9 @@ def iowait(period=10):
         if rowCount == 1:
           continue
         elif rowCount == 2:
-            return {
-                'row': row
-            }
+          return {
+            'row': row
+          }
           ioWaitColumn = row.index('%iowait')
           continue
         else:
