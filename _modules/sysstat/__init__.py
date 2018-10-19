@@ -38,8 +38,9 @@ def iowait(period=10):
             columnCount = len(row)
             continue
 
+
         # haven't found a column yet
-        if columnCount == 0 or columnCount != len(row):
+        if columnCount == 0 or columnCount != len(row) :
             continue
 
         totalIOWait += float(row[ioWaitColumn])
