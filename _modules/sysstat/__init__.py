@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import csv
 import os
 
@@ -10,13 +13,13 @@ def iowait(period=10):
     'results': {},
     'average': 0
   }
-  
+
   runningTotal = 0
   totalResults = 0
-  
+
   for daysAgo in range(0, period):
     daysAgoDate = datetime.now() - timedelta(days=daysAgo)
-    
+
     # todo comeback to and check for other file paths
     sarFilePath = '/var/log/sysstat/sa' + daysAgoDate.strftime('%Y%m%d')
     if os.path.isfile(sarFilePath):
@@ -36,7 +39,7 @@ def iowait(period=10):
           continue
         else:
           totalIOWait += float(row[ioWaitColumn])
-      
+
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
         'fail': False,
         'average': (totalIOWait / (rowCount - 2)),
@@ -50,6 +53,6 @@ def iowait(period=10):
         'average': 0,
         'message': 'Unable to find sar file'
       }
-  
+
   returnData['average'] = (runningTotal / totalResults)
   return returnData
