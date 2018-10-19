@@ -29,19 +29,21 @@ def iowait(period=10):
       reader = csv.reader(sarData, delimiter=';')
       rowCount = 0
       ioWaitColumn = 0
+      columnCount = 0
       totalIOWait = 0
       for row in reader:
+        # for some reason we can have 2 or more sets of headers
+        if '%iowait' in row :
+            ioWaitColumn = row.index('%iowait')
+            columnCount = len(row)
+            continue
+
+        # haven't found a column yet
+        if columnCount == 0 || columnCount != len(row):
+            continue
+
+        totalIOWait += float(row[ioWaitColumn])
         rowCount += 1
-        if rowCount == 1:
-          continue
-        elif rowCount == 2:
-          return {
-            'row': row
-          }
-          ioWaitColumn = row.index('%iowait')
-          continue
-        else:
-          totalIOWait += float(row[ioWaitColumn])
 
       returnData['results'][daysAgoDate.strftime('%Y-%m-%d')] = {
         'fail': False,
