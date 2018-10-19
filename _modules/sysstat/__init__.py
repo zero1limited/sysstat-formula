@@ -7,7 +7,7 @@ import csv
 import os
 
 def iowait(period=10):
-  
+
   returnData = {
     'period': period,
     'results': {},
@@ -35,6 +35,9 @@ def iowait(period=10):
         if rowCount == 1:
           continue
         elif rowCount == 2:
+            return {
+                'row': row
+            }
           ioWaitColumn = row.index('%iowait')
           continue
         else:
